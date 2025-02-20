@@ -1,0 +1,19 @@
+
+.parent-header{
+    margin: 0px 80px;
+    padding-top: 30px;
+    background-color: #222;
+}
+.header-flex{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.header-logo{
+   font-size: 30px;
+   margin-right: 8px;
+}
+.header-right{ 
+    width: 600px;
+   
+}
