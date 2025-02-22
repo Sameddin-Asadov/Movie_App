@@ -1,19 +1,134 @@
-
-.parent-header{
-    margin: 0px 80px;
-    padding-top: 30px;
-    background-color: #222;
+.parent-header {
+    width: 100%;
+    padding: 30px 80px;
+    background-color: #144184;
 }
-.header-flex{
+
+.header-flex {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
-.header-logo{
-   font-size: 30px;
-   margin-right: 8px;
+
+.logo-text {
+    color: #fff;
+    font-size: 25px;
 }
-.header-right{ 
-    width: 600px;
-   
+
+.logo-color {
+    color: #5fb1da;
+}
+
+.header-logo {
+    font-size: 25px;
+    margin-right: 4px;
+
+}
+
+.header-bottons {
+    width: 550px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-button {
+    list-style-type: none;
+}
+
+.header-button a {
+    padding: 8px;
+    padding-left: 13px;
+    padding-right: 13px;
+    border-radius: 4px !important;
+    border-radius: none;
+    font: 400 18px "Roboto";
+    color: #e3f5ff;
+    text-decoration: none;
+    text-shadow: 0 1px 1px #1D282D;
+    margin-bottom: 9px;
+    position: relative;
+    z-index: 4;
+}
+
+.header-button a:hover {
+    background-color: #228bc0;
+    color: #fff;
+    cursor: pointer;
+}
+
+.login-button {
+    background: #326884 !important;
+    text-shadow: none !important;
+    margin-left: 5px;
+}
+
+.header-right {
+    display: flex;
+
+}
+
+.header-input {
+    outline: none;
+    border: none;
+    border-radius: 4px;
+    padding: 4px;
+    margin-right: 5px;
+}
+
+.login-btn {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    padding: 5px;
+    border-radius: 4px;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.btn-icon {
+    color: #fff;
+    font-size: 30px;
+}
+
+.login-text {
+    color: #fff;
+    font-size: 20px;
+    margin: 2px;
+}
+
+.login-btn:hover,
+.hm-button:hover,
+.hm-item:hover {
+    border: 1px solid #33beef;
+    background-color: #228bc0;
+}
+
+
+
+.responsive-input {
+    width: 100%;
+    border: none;
+    border-radius: 4px;
+    padding: 10px;
+    margin-top: 10px;
+    outline: none;
+}
+
+.hm-item a {
+    margin-top: 3px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 20px;
+    color: #000;
+    text-decoration: none;
+}
+
+.hm-item a:hover {
+    color: #ffff;
 }
