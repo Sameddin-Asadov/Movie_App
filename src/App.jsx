@@ -7,13 +7,12 @@ import Home from './pages/Home'
 function App() {
 
 
-  return(
-    <div> <Header/>
-    <div className='main'>
-     
-      <Home/>
+  return (
+    <div> <Header />
+      <div className='main'>
+        <Home />
       </div>
-      <Footer/>
+      <Footer />
     </div>
   )
 }
