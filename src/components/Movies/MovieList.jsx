@@ -25,12 +25,11 @@ function MovieList() {
     // const { chechkMovies } = useSelector(store => store.CheckApi)
     const movies = [...responseFight, ...responseAction, ...responseComedy, ...responseAnime, ...responseDrama, ...responseHorror]
 
-
-
     return (
         <div className='movie-home' >
             {movies && movies.map((movie) => (
-                <Movie key={movie.imdbID} movie={movie} />
+                 movie.Poster !=='N/A'? <Movie key={movie.imdbID} movie={movie} />: console.log('undifined') 
+        
             ))}
         </div>
     )

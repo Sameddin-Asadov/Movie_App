@@ -1,12 +1,37 @@
 .movie-home {
-    /* display: flex;
+     display: flex;
     flex-wrap: wrap;
-    height: 450px;
     flex-direction: row;
-    gap: 15px;
-    border: none;
-    border-radius: 4px;
-    align-items: flex-start;
-    justify-content: flex-start; */
+    gap: 40px 5px;
+    margin-top: 5px;
 
+} 
+.grid{display: flex;
+flex-direction: row;
+align-items: center;
+justify-content: center;
+flex-wrap: wrap;}
+.card{
+    border-radius: 4px;
+    width: 200px;
+    height:282px;
+    padding: 5px;
+    margin-top: 15px;
 }
+.card-image{
+    width: 190px;
+    height: 281px;
+    border-radius: 4px;
+}
+@media (max-width: 480px) {
+    .movie-home {
+      flex-direction: row; /* Div-lər tək sütunda yığılacaq */
+      gap: 10px; /* Daha kiçik boşluq */
+    }
+  }
+  @media (max-width: 480px) {
+    .movie-home {
+      flex-direction: column; /* Div-lər tək sütunda yığılacaq */
+      gap: 10px; /* Daha kiçik boşluq */
+    }
+  }

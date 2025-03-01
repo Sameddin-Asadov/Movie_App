@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-
+import { checkMovieApi, getActionMovies,  getAnime, getComedyMovies, getDramaMovies, getFightMovies, getHorrorMovies } from '../redux/moviesSlice'
 import '../style/Components.css'
 import { BiSolidCameraMovie } from "react-icons/bi";
 import Drawer from '@mui/material/Drawer';
@@ -7,11 +7,15 @@ import Button from '@mui/material/Button';
 import { GiHamburgerMenu } from "react-icons/gi";
 import { Box } from '@mui/material';
 import { IoPersonCircleSharp } from "react-icons/io5";
-import { FaSearch } from "react-icons/fa";
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import { useDispatch, useSelector } from 'react-redux';
 function Header() {
 
   const [menuSituation, setMenuSituation] = useState(false)
   const [displaySize, setDisplaySize] = useState('flex')
+  const [anchorEl, setAnchorEl] = useState(null); 
+  const open = Boolean(anchorEl)
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth <= 1080) {
@@ -26,14 +30,36 @@ function Header() {
       window.removeEventListener('resize', handleResize);
     };
   }, [])
+  const handleGenresClick = (e) => {
+    setAnchorEl(e.currentTarget); 
+  };
+  const handleGenresClose = () => {
+    setAnchorEl(null); 
+  };
+ 
   const menuItems = [
     { text: "Watch Movies", link: '#' },
     { text: 'Best Movies', link: '#' },
     { text: 'Series', link: '#' },
-    { text: 'Genres', link: '#' },
-    { text: 'Preferences', link: '#' },
-
-  ]
+    { text: 'Genres', link: '#', onClick:handleGenresClick },
+    { text: 'Preferences', link: '#' },]
+    const dispatch = useDispatch()
+    useEffect(() => {
+        dispatch(getFightMovies())
+        dispatch(getDramaMovies())
+        dispatch(getAnime())
+        dispatch(getActionMovies())
+        dispatch(getHorrorMovies())
+        dispatch(getComedyMovies())
+        dispatch(checkMovieApi())
+    }, [])
+  
+    const { responseFight } = useSelector(store => store.AllFight)
+    const { responseAction } = useSelector(store => store.AllAction)
+    const { responseHorror } = useSelector(store => store.AllHorror)
+    const { responseComedy } = useSelector(store => store.AllComedy)
+    const { responseAnime } = useSelector(store => store.AllAnime)
+    const { responseDrama } = useSelector(store => store.AllDrama)
   return (
     <div className='parent-header'>
       <div className='header-flex'>
@@ -44,7 +70,7 @@ function Header() {
               {menuItems.map((item) => {
                 return (
                   <li key={item.text} className='hm-item' >
-                    <a className={item.className ? item.className : ''} href={item.link}>{item.text}</a>
+                    <a className={item.className ? item.className : ''} onClick={item.onClick} href={item.link}>{item.text}</a>
                   </li>
                 )
               })}
@@ -59,7 +85,7 @@ function Header() {
             {menuItems.map((item) => {
               return (
                 <li key={item.text} className='header-button'>
-                  <a className={item.className ? item.className : ''} href={item.link}>{item.text}</a>
+                  <a className={item.className ? item.className : ''} onClick={item.onClick} href={item.link}>{item.text}</a>
                 </li>
               )
             })}
@@ -73,6 +99,24 @@ function Header() {
         </div>
       </div >
       <input style={{ display: displaySize === 'none' ? 'block' : 'none' }} className='responsive-input' placeholder='Enter keywords...' type="text" />
+
+      <Menu
+        id="genres-menu"
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleGenresClose}
+        MenuListProps={{
+          'aria-labelledby': 'genres-button',
+        }}
+      >
+        <MenuItem onClick={handleGenresClose}>Action</MenuItem>
+        <MenuItem onClick={handleGenresClose}>Horror</MenuItem>
+        <MenuItem onClick={handleGenresClose}>Drama</MenuItem>
+        <MenuItem onClick={handleGenresClose}>Comedy</MenuItem>
+        <MenuItem onClick={handleGenresClose}>Anime</MenuItem>
+
+      </Menu>
+
     </div >
   )
 }
