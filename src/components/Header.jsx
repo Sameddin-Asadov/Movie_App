@@ -10,6 +10,7 @@ import { IoPersonCircleSharp } from "react-icons/io5";
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 function Header() {
 
   const [menuSituation, setMenuSituation] = useState(false)
@@ -109,11 +110,11 @@ function Header() {
           'aria-labelledby': 'genres-button',
         }}
       >
-        <MenuItem onClick={handleGenresClose}>Action</MenuItem>
+        <MenuItem onClick={handleGenresClose}> <Link to='/action'>Action</Link> </MenuItem>
         <MenuItem onClick={handleGenresClose}>Horror</MenuItem>
         <MenuItem onClick={handleGenresClose}>Drama</MenuItem>
         <MenuItem onClick={handleGenresClose}>Comedy</MenuItem>
-        <MenuItem onClick={handleGenresClose}>Anime</MenuItem>
+        <MenuItem onClick={handleGenresClose}>Animation</MenuItem>
 
       </Menu>
 

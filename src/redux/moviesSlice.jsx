@@ -9,9 +9,21 @@ const initialState = {
     responseComedy: [],
     responseAnime: [],
     responseDrama: [],
-    chechkMovies: []
+    responseWar: [],
+    responseBiography:[],
+    responseKids:[],
+    responseCrime:[],
+    responseAdventure:[],
+    responseFantasy:[],
+    chechkMovies: [],
 }
-const checkApi = 'http://www.omdbapi.com/?&type=movie&apikey=1faef3e4'
+const checkApi = 'http://www.omdbapi.com/?s=war&apikey=1faef3e4'
+const war = 'http://www.omdbapi.com/?s=war&apikey=1faef3e4'
+const biography = 'http://www.omdbapi.com/?s=biography&apikey=1faef3e4'
+const kids = 'http://www.omdbapi.com/?s=kids&apikey=1faef3e4'
+const crime = 'http://www.omdbapi.com/?s=crime&apikey=1faef3e4'
+const adventure = 'http://www.omdbapi.com/?s=adventure&apikey=1faef3e4'
+const fantasy = 'http://www.omdbapi.com/?s=fantasy&apikey=1faef3e4'
 const ComedyMovies = 'http://www.omdbapi.com/?s=comedy&apikey=1faef3e4'
 const action = 'http://www.omdbapi.com/?s=action&y=2024&type=series&apikey=1faef3e4'
 const drama = 'http://www.omdbapi.com/?s=drama&y=2024&type=series&apikey=1faef3e4'
@@ -23,6 +35,41 @@ export const checkMovieApi = createAsyncThunk('CheckApi',
     async () => {
         const checkMovie = await axios.get(checkApi)
         return checkMovie.data.Search
+    }
+)
+export const getWarMovies = createAsyncThunk('AllWar',
+    async() =>{
+        const responseWarMovies = await axios.get(war)
+        return responseWarMovies.data.Search
+    }
+)
+export const getKidsMovies = createAsyncThunk("AllKids",
+    async ()=>{
+        const responseKidsMovies = await axios.get(kids)
+    return responseKidsMovies.data.Search   }
+)
+export const getBiographyMovies = createAsyncThunk('AllBiography',
+    async ()=>{
+        const responseBiographyMovies = await axios.get(biography)
+        return responseBiographyMovies.data.Search
+    }
+)
+export const getCrimeMovies = createAsyncThunk('AllCrime',
+    async()=>{
+        const responseCrimeMovies = await axios.get(crime)
+        return responseCrimeMovies.data.Search
+    }
+)
+export const getAdventureMovies = createAsyncThunk("AllAdventure",
+    async ()=>{
+        const responseAdventureMovies= await axios.get(adventure)
+        return responseAdventureMovies.data.Search
+    }
+)
+export const getFantasyMovies = createAsyncThunk('AllFantasy',
+    async ()=>{
+        const responseFantasyMovies = await axios.get(fantasy)
+        return responseFantasyMovies.data.Search
     }
 )
 export const getAllMovies = createAsyncThunk('movies',
@@ -93,6 +140,24 @@ export const moviesSlice = createSlice({
         })
         builder.addCase(checkMovieApi.fulfilled, (state, action) => {
             state.chechkMovies = action.payload
+        })
+        builder.addCase(getWarMovies.fulfilled, (state,action)=>{
+            state.responseWar =action.payload
+        } )
+        builder.addCase(getKidsMovies.fulfilled, (state,action)=>{
+            state.responseKids = action.payload
+        })
+        builder.addCase(getAdventureMovies.fulfilled, (state,action)=>{
+            state.responseAdventure= action.payload
+        })
+        builder.addCase(getBiographyMovies.fulfilled, (state,action)=>{
+            state.responseBiography= action.payload
+        })
+        builder.addCase(getCrimeMovies.fulfilled,(state,action)=>{
+            state.responseCrime=action.payload
+        })
+        builder.addCase(getFantasyMovies.fulfilled, (state,action)=>{
+            state.responseFantasy=action.payload
         })
     }
 })
