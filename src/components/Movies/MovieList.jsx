@@ -1,9 +1,7 @@
-import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { checkMovieApi, getActionMovies, getAdventureMovies, getAllMovies, getAnime, getBiographyMovies, getComedyMovies, getCrimeMovies, getDramaMovies, getFantasyMovies, getFightMovies, getHorrorMovies, getKidsMovies, getWarMovies } from '../../redux/moviesSlice'
-import Movie from './Movie'
-import '../../style/Movie.css'
+import Body from '../Body'
 function MovieList() {
 
     const dispatch = useDispatch()
@@ -29,7 +27,6 @@ function MovieList() {
     const { responseAdventure} = useSelector(store => store.AllAdventure)
     const { responseFantasy} = useSelector(store => store.AllFantasy)
     const { responseFight } = useSelector(store => store.AllFight)
-
     const { responseAction } = useSelector(store => store.AllAction)
     const { responseHorror } = useSelector(store => store.AllHorror)
     const { responseComedy } = useSelector(store => store.AllComedy)
@@ -38,13 +35,9 @@ function MovieList() {
     const { chechkMovies } = useSelector(store => store.CheckApi)
 
     const movies = [...responseWar,...responseBiography,...responseKids,...responseCrime,...responseAdventure,...responseFantasy,...responseFight, ...responseAction, ...responseComedy, ...responseAnime, ...responseDrama, ...responseHorror]
-console.log(chechkMovies)
     return (
-        <div className='movie-home' >
-            {movies && movies.map((movie) => (
-                 movie.Poster !=='N/A'? <Movie key={movie.imdbID} movie={movie} />: console.log('undifined') 
-        
-            ))}
+        <div>
+           <Body movies={movies}/>
         </div>
     )
 }

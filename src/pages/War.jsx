@@ -1,19 +1,19 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getDramaMovies } from '../redux/moviesSlice'
+import { getWarMovies } from '../redux/moviesSlice'
 import Body from '../components/Body'
 
-function Drama() {
+function War() {
   const dispact = useDispatch()
   useEffect(()=>{
-    dispact(getDramaMovies)
+    dispact(getWarMovies)
   },[])
-  const {responseDrama}=useSelector(store=>store.AllDrama)
+  const {responseWar}=useSelector(store=>store.AllWar)
   return (
     <div>
-      {<Body movies={responseDrama}/>}
+      {<Body movies={responseWar}/>}
     </div>
   )
 }
 
-export default Drama
+export default War
