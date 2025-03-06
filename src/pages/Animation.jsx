@@ -6,7 +6,7 @@ import Body from '../components/Body'
 function Animation() {
   const dispatch = useDispatch()
   useEffect(()=>{
-    dispatch(getAnime)
+    dispatch(getAnime())
   },[])
   const {responseAnime}= useSelector(store => store.AllAnime)
   return (

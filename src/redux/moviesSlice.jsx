@@ -27,10 +27,22 @@ const fantasy = 'http://www.omdbapi.com/?s=fantasy&apikey=1faef3e4'
 const ComedyMovies = 'http://www.omdbapi.com/?s=comedy&apikey=1faef3e4'
 const action = 'http://www.omdbapi.com/?s=action&y=2024&type=series&apikey=1faef3e4'
 const drama = 'http://www.omdbapi.com/?s=drama&y=2024&type=series&apikey=1faef3e4'
-const anime = 'http://www.omdbapi.com/?s=anime&y=2024&type=series&apikey=1faef3e4'
+const anime = 'http://www.omdbapi.com/?s=animation&y=2024&type=series&apikey=1faef3e4'
 const fight = 'http://www.omdbapi.com/?s=fight&y=2024&type=series&apikey=1faef3e4'
 const horror = 'http://www.omdbapi.com/?s=horror&type=movie&apikey=1faef3e4'
-
+export const menuChildren=[{text:'Action',to:"/action"},
+    {text:'Adventure',to:"/adventure"},
+    {text:'Animation',to:"/animation"},
+    {text:'Biography',to:"/biography"},
+    {text:'Comedy',to:"/comedy"},
+    {text:'Crime',to:"/crime"},
+    {text:'Drama',to:"/drama"},
+    {text:'Fantasy',to:"/fantasy"},
+    {text:'Fight',to:"/fight"},
+    {text:'Horror',to:"/horror"},
+    {text:'Kids',to:"/kids"},
+    {text:'War',to:"/war"},
+   ]
 export const checkMovieApi = createAsyncThunk('CheckApi',
     async () => {
         const checkMovie = await axios.get(checkApi)
@@ -96,8 +108,8 @@ export const getComedyMovies = createAsyncThunk('AllComedy',
     })
 export const getAnime = createAsyncThunk('AllAnime',
     async () => {
-        const allAnime = await axios.get(anime)
-        return (allAnime.data.Search)
+        const responseComedyMovies = await axios.get(anime)
+        return (responseComedyMovies.data.Search)
     })
 export const getActionMovies = createAsyncThunk('AllAction',
     async () => {

@@ -6,7 +6,7 @@ import Body from '../components/Body'
 function War() {
   const dispact = useDispatch()
   useEffect(()=>{
-    dispact(getWarMovies)
+    dispact(getWarMovies())
   },[])
   const {responseWar}=useSelector(store=>store.AllWar)
   return (

@@ -6,9 +6,10 @@ import Body from '../components/Body'
 function Crime() {
   const dispatch= useDispatch()
   useEffect(()=>{
-    dispatch(getCrimeMovies)
+    dispatch(getCrimeMovies())
   },[])
   const {responseCrime}= useSelector(store => store.AllCrime)
+  console.log(responseCrime)
   return (
     <div>
       {<Body movies={responseCrime}/>}

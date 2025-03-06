@@ -6,7 +6,7 @@ import Body from '../components/Body'
 function Fantasy() {
   const dispact = useDispatch()
   useEffect(()=>{
-    dispact(getFantasyMovies)
+    dispact(getFantasyMovies())
   },[])
   const {responseFantasy}=useSelector(store=>store.AllFantasy)
   return (

@@ -6,7 +6,7 @@ import Body from '../components/Body'
 function Kids() {
   const dispact = useDispatch()
   useEffect(()=>{
-    dispact(getKidsMovies)
+    dispact(getKidsMovies())
   },[])
   const {responseKids}= useSelector(store =>store.AllKids)
   return (

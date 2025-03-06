@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { checkMovieApi, getActionMovies,  getAnime, getComedyMovies, getDramaMovies, getFightMovies, getHorrorMovies } from '../redux/moviesSlice'
+import { checkMovieApi, getActionMovies,  getAnime, getComedyMovies, getDramaMovies, getFightMovies, getHorrorMovies, menuChildren } from '../redux/moviesSlice'
 import '../style/Components.css'
 import { BiSolidCameraMovie } from "react-icons/bi";
 import Drawer from '@mui/material/Drawer';
@@ -44,6 +44,7 @@ function Header() {
     { text: 'Series', link: '#' },
     { text: 'Genres', link: '#', onClick:handleGenresClick },
     { text: 'Preferences', link: '#' },]
+  
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(getFightMovies())
@@ -54,7 +55,7 @@ function Header() {
         dispatch(getComedyMovies())
         dispatch(checkMovieApi())
     }, [])
-  
+   
     const { responseFight } = useSelector(store => store.AllFight)
     const { responseAction } = useSelector(store => store.AllAction)
     const { responseHorror } = useSelector(store => store.AllHorror)
@@ -104,17 +105,15 @@ function Header() {
       <Menu
         id="genres-menu"
         anchorEl={anchorEl}
-        open={open}
+        open={Boolean(anchorEl)}
         onClose={handleGenresClose}
         MenuListProps={{
           'aria-labelledby': 'genres-button',
         }}
       >
-        <MenuItem onClick={handleGenresClose}> <Link to='/action'>Action</Link> </MenuItem>
-        <MenuItem onClick={handleGenresClose}>Horror</MenuItem>
-        <MenuItem onClick={handleGenresClose}>Drama</MenuItem>
-        <MenuItem onClick={handleGenresClose}>Comedy</MenuItem>
-        <MenuItem onClick={handleGenresClose}>Animation</MenuItem>
+      {menuChildren && menuChildren.map((menuChild)=>(
+        <MenuItem key={menuChild.text} component={Link} onClick={handleGenresClose} to={menuChild.to}>{menuChild.text}</MenuItem>
+      ))}
 
       </Menu>
 
