@@ -10,7 +10,7 @@ import { IoPersonCircleSharp } from "react-icons/io5";
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 function Header() {
 
   const [menuSituation, setMenuSituation] = useState(false)
@@ -37,7 +37,12 @@ function Header() {
   const handleGenresClose = () => {
     setAnchorEl(null); 
   };
- 
+ const [inputValue,setInputValue]=useState('')
+
+  const handleInput = (e)=>{
+    setInputValue(e.target.value)
+
+  }
   const menuItems = [
     { text: "Watch Movies", link: '#' },
     { text: 'Best Movies', link: '#' },
@@ -79,7 +84,7 @@ function Header() {
             </ul>
           </Box>
         </Drawer>
-        <div className="header-left header-flex">
+        <div component={Link} to='/' className="header-left header-flex">
           <BiSolidCameraMovie className='header-logo logo-color' /><span className='logo-color logo-text ' >Movie<span className='logo-text'>Mania</span> </span>
         </div>
         <div style={{ display: displaySize }} className="header-right header-flex">
@@ -94,13 +99,13 @@ function Header() {
           </ul>
         </div>
         <div className='header-right'>
-          <input type="text" style={{ display: displaySize }} className='header-input' placeholder='Enter keywords...' />
+          <input type="text" value={ inputValue} onChange={handleInput}  style={{ display: displaySize }} className='header-input' placeholder='Enter keywords...' />
           <div >
             <button className='login-btn'><IoPersonCircleSharp className='btn-icon' /><span className='login-text' style={{ display: displaySize }} >Login</span></button>
           </div>
         </div>
       </div >
-      <input style={{ display: displaySize === 'none' ? 'block' : 'none' }} className='responsive-input' placeholder='Enter keywords...' type="text" />
+      <input value={ inputValue} onChange={handleInput} style={{ display: displaySize === 'none' ? 'block' : 'none' }} className='responsive-input' placeholder='Enter keywords...' type="text" />
 
       <Menu
         id="genres-menu"
