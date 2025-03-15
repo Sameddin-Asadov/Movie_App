@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { getAllSeries, getActionMovies,  getAnime, getComedyMovies, getDramaMovies, getFightMovies, getHorrorMovies, menuChildren } from '../redux/moviesSlice'
+import { menuChildren, fetchMovies } from '../redux/moviesSlice'
 import '../style/Components.css'
 import { BiSolidCameraMovie } from "react-icons/bi";
 import Drawer from '@mui/material/Drawer';
@@ -57,23 +57,12 @@ function Header() {
   
     const dispatch = useDispatch()
     useEffect(() => {
-        dispatch(getFightMovies())
-        dispatch(getDramaMovies())
-        dispatch(getAnime())
-        dispatch(getActionMovies())
-        dispatch(getHorrorMovies())
-        dispatch(getComedyMovies())
-        dispatch(getAllSeries())
+        dispatch(fetchMovies({search: "war", type: "movie" }))
+       
     }, [])
    
-    const { responseFight } = useSelector(store => store.AllFight)
-    const { responseAction } = useSelector(store => store.AllAction)
-    const { responseHorror } = useSelector(store => store.AllHorror)
-    const { responseComedy } = useSelector(store => store.AllComedy)
-    const { responseAnime } = useSelector(store => store.AllAnime)
-    const { responseDrama } = useSelector(store => store.AllDrama)
-    const { responseSeries } = useSelector(store => store.AllSeries)
-    console.log(responseSeries)
+    const { movies } = useSelector(store => store.movies)
+    console.log(movies)
 
   return (
     <div className='parent-header'>

@@ -1,17 +1,19 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getWarMovies } from '../redux/moviesSlice'
+import { fetchMovies } from '../redux/moviesSlice'
 import Body from '../components/Body'
 
 function War() {
-  const dispact = useDispatch()
-  useEffect(()=>{
-    dispact(getWarMovies())
-  },[])
-  const {responseWar}=useSelector(store=>store.AllWar)
+  const dispatch = useDispatch()
+   useEffect(() => {
+          dispatch(fetchMovies({search: "war", type: "movie" }))
+         
+      }, [])
+     
+      const { movies } = useSelector(store => store.movies)
   return (
     <div>
-      {<Body movies={responseWar}/>}
+      {<Body movies={movies}/>}
     </div>
   )
 }
