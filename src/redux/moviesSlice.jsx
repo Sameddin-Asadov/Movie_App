@@ -15,21 +15,24 @@ const initialState = {
     responseCrime:[],
     responseAdventure:[],
     responseFantasy:[],
-    chechkMovies: [],
+    responseSeries: [],
 }
-const checkApi = 'http://www.omdbapi.com/?s=war&apikey=1faef3e4'
-const war = 'http://www.omdbapi.com/?s=war&apikey=1faef3e4'
-const biography = 'http://www.omdbapi.com/?s=biography&apikey=1faef3e4'
-const kids = 'http://www.omdbapi.com/?s=kids&apikey=1faef3e4'
-const crime = 'http://www.omdbapi.com/?s=crime&apikey=1faef3e4'
-const adventure = 'http://www.omdbapi.com/?s=adventure&apikey=1faef3e4'
-const fantasy = 'http://www.omdbapi.com/?s=fantasy&apikey=1faef3e4'
-const ComedyMovies = 'http://www.omdbapi.com/?s=comedy&apikey=1faef3e4'
-const action = 'http://www.omdbapi.com/?s=action&y=2024&type=series&apikey=1faef3e4'
-const drama = 'http://www.omdbapi.com/?s=drama&y=2024&type=series&apikey=1faef3e4'
-const anime = 'http://www.omdbapi.com/?s=animation&y=2024&type=series&apikey=1faef3e4'
-const fight = 'http://www.omdbapi.com/?s=fight&y=2024&type=series&apikey=1faef3e4'
-const horror = 'http://www.omdbapi.com/?s=horror&type=movie&apikey=1faef3e4'
+const getMoviesUrl=(search,type)=>(
+   ` http://www.omdbapi.com/?s=${search}&type=${type}&apikey=1faef3e4`
+)
+const allSeries = getMoviesUrl('all','movie')
+const war = getMoviesUrl('war','movie')
+const biography = getMoviesUrl('biography','movie')
+const kids = getMoviesUrl('kids','movie')
+const crime = getMoviesUrl('crime','movie')
+const adventure = getMoviesUrl('adventure','movie')
+const fantasy = getMoviesUrl('fantasy','movie')
+const ComedyMovies = getMoviesUrl('comedy','movie')
+const action = getMoviesUrl('action','movie')
+const drama = getMoviesUrl('drama','movie')
+const anime = getMoviesUrl('animation','movie')
+const fight = getMoviesUrl('fight','movie')
+const horror = getMoviesUrl('horror','movie')
 export const menuChildren=[{text:'Action',to:"/action"},
     {text:'Adventure',to:"/adventure"},
     {text:'Animation',to:"/animation"},
@@ -43,10 +46,10 @@ export const menuChildren=[{text:'Action',to:"/action"},
     {text:'Kids',to:"/kids"},
     {text:'War',to:"/war"},
    ]
-export const checkMovieApi = createAsyncThunk('CheckApi',
+export const getAllSeries = createAsyncThunk('AllSeries',
     async () => {
-        const checkMovie = await axios.get(checkApi)
-        return checkMovie.data.Search
+        const responseAllSeries = await axios.get(allSeries)
+        return responseAllSeries.data.Search
     }
 )
 export const getWarMovies = createAsyncThunk('AllWar',
@@ -150,8 +153,8 @@ export const moviesSlice = createSlice({
         builder.addCase(getHorrorMovies.fulfilled, (state, action) => {
             state.responseHorror = action.payload
         })
-        builder.addCase(checkMovieApi.fulfilled, (state, action) => {
-            state.chechkMovies = action.payload
+        builder.addCase(getAllSeries.fulfilled, (state, action) => {
+            state.responseSeries = action.payload
         })
         builder.addCase(getWarMovies.fulfilled, (state,action)=>{
             state.responseWar =action.payload

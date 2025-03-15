@@ -1,6 +1,6 @@
 import React, { useEffect} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { checkMovieApi, getActionMovies, getAdventureMovies, getAllMovies, getAnime, getBiographyMovies, getComedyMovies, getCrimeMovies, getDramaMovies, getFantasyMovies, getFightMovies, getHorrorMovies, getKidsMovies, getWarMovies } from '../../redux/moviesSlice'
+import { getActionMovies, getAdventureMovies, getAllSeries, getAnime, getBiographyMovies, getComedyMovies, getCrimeMovies, getDramaMovies, getFantasyMovies, getFightMovies, getHorrorMovies, getKidsMovies, getWarMovies } from '../../redux/moviesSlice'
 import Body from '../Body'
 function MovieList() {
 
@@ -12,7 +12,7 @@ function MovieList() {
         dispatch(getActionMovies())
         dispatch(getHorrorMovies())
         dispatch(getComedyMovies())
-        dispatch(checkMovieApi())
+        dispatch(getAllSeries())
         dispatch(getWarMovies())
         dispatch(getKidsMovies())
         dispatch(getBiographyMovies())
@@ -32,7 +32,7 @@ function MovieList() {
     const { responseComedy } = useSelector(store => store.AllComedy)
     const { responseAnime } = useSelector(store => store.AllAnime)
     const { responseDrama } = useSelector(store => store.AllDrama)
-    const { chechkMovies } = useSelector(store => store.CheckApi)
+    const { responseSeries } = useSelector(store => store.AllSeries)
 
     const movies = [...responseWar,...responseBiography,...responseKids,...responseCrime,...responseAdventure,...responseFantasy,...responseFight, ...responseAction, ...responseComedy, ...responseAnime, ...responseDrama, ...responseHorror]
     return (

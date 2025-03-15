@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { checkMovieApi, getActionMovies,  getAnime, getComedyMovies, getDramaMovies, getFightMovies, getHorrorMovies, menuChildren } from '../redux/moviesSlice'
+import { getAllSeries, getActionMovies,  getAnime, getComedyMovies, getDramaMovies, getFightMovies, getHorrorMovies, menuChildren } from '../redux/moviesSlice'
 import '../style/Components.css'
 import { BiSolidCameraMovie } from "react-icons/bi";
 import Drawer from '@mui/material/Drawer';
@@ -11,6 +11,7 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link} from 'react-router-dom';
+import Series from '../pages/Series';
 function Header() {
 
   const [menuSituation, setMenuSituation] = useState(false)
@@ -34,19 +35,23 @@ function Header() {
   const handleGenresClick = (e) => {
     setAnchorEl(e.currentTarget); 
   };
+  const handleSeriesClick =()=>{
+    responseSeries && responseSeries.map((series)=>{
+<Series series={series}/>
+    })
+  }
   const handleGenresClose = () => {
     setAnchorEl(null); 
   };
  const [inputValue,setInputValue]=useState('')
 
-  const handleInput = (e)=>{
+ const handleInput = (e)=>{
     setInputValue(e.target.value)
-
   }
   const menuItems = [
     { text: "Watch Movies", link: '#' },
     { text: 'Best Movies', link: '#' },
-    { text: 'Series', link: '#' },
+    { text: 'Series', link: '#' , onClick:handleSeriesClick},
     { text: 'Genres', link: '#', onClick:handleGenresClick },
     { text: 'Preferences', link: '#' },]
   
@@ -58,7 +63,7 @@ function Header() {
         dispatch(getActionMovies())
         dispatch(getHorrorMovies())
         dispatch(getComedyMovies())
-        dispatch(checkMovieApi())
+        dispatch(getAllSeries())
     }, [])
    
     const { responseFight } = useSelector(store => store.AllFight)
@@ -67,10 +72,14 @@ function Header() {
     const { responseComedy } = useSelector(store => store.AllComedy)
     const { responseAnime } = useSelector(store => store.AllAnime)
     const { responseDrama } = useSelector(store => store.AllDrama)
+    const { responseSeries } = useSelector(store => store.AllSeries)
+    console.log(responseSeries)
+
   return (
     <div className='parent-header'>
       <div className='header-flex'>
-        <Button className='hm-button' sx={{ fontSize: "28px", color: "#fff", display: displaySize === 'none' ? 'block' : 'none' }} onClick={() => setMenuSituation(true)}><GiHamburgerMenu /></Button>
+        <Link>
+        <Button className='hm-button' sx={{ fontSize: "28px", color: "#fff", display: displaySize === 'none' ? 'block' : 'none' }} onClick={() => setMenuSituation(true)}><GiHamburgerMenu /></Button></Link>
         <Drawer open={menuSituation} onClose={() => { setMenuSituation(false) }} >
           <Box>
             <ul>
@@ -84,9 +93,9 @@ function Header() {
             </ul>
           </Box>
         </Drawer>
-        <div component={Link} to='/' className="header-left header-flex">
+        <Link     to='/' className="header-left header-flex">
           <BiSolidCameraMovie className='header-logo logo-color' /><span className='logo-color logo-text ' >Movie<span className='logo-text'>Mania</span> </span>
-        </div>
+        </Link>
         <div style={{ display: displaySize }} className="header-right header-flex">
           <ul className="header-bottons">
             {menuItems.map((item) => {

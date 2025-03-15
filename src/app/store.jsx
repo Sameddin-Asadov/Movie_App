@@ -6,7 +6,7 @@ import ComedyRedux from '../redux/moviesSlice'
 import AnimeRedux from '../redux/moviesSlice'
 import ActionRedux from '../redux/moviesSlice'
 import HorrorRedux from '../redux/moviesSlice'
-import CheckRedux from '../redux/moviesSlice'
+import SeriesRedux from '../redux/moviesSlice'
 import WarRedux from '../redux/moviesSlice'
 import KidsRedux from '../redux/moviesSlice'
 import BiographyRedux from '../redux/moviesSlice'
@@ -23,7 +23,7 @@ export const store = configureStore({
         AllAnime: AnimeRedux,
         AllAction: ActionRedux,
         AllHorror: HorrorRedux,
-        CheckApi: CheckRedux,
+        AllSeries: SeriesRedux,
         AllWar:WarRedux,
         AllKids:KidsRedux,
         AllBiography:BiographyRedux,

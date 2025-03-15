@@ -15,8 +15,7 @@ function Movie({ movie }) {
             <div key={movie.imdbID} className="card">
 <img src={movie.Poster} className='card-image' alt={movie.Title} />
 <div className="title">{movie.Title}</div>
-            </div>
-
+</div>
         </div >
     )
 }
