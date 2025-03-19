@@ -6,12 +6,15 @@ function MovieList() {
 
     const dispatch = useDispatch()
     useEffect(() => {
-           dispatch(fetchMovies({search: "war", type: "movie" }))
-          
-       }, [])
+        const categories= ['adventure','action','animate','biography','comedy','crime','drama','fight','horror','kid','war','fantasy']
+    Promise.all(categories.map(category =>
+        dispatch(fetchMovies({ search: category, type: "series" }))
+      ));
+ 
+       }, [dispatch])
       
        const { movies } = useSelector(store => store.movies)
-       console.log(movies)
+    
 
     return (
         <div>
