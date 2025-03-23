@@ -3,8 +3,13 @@ import Movie from './Movies/Movie'
 import '../style/Movie.css'
 function Body({movies}) {
   return (
-    <div className='movie-home'> {movies && movies.map((movie) => (
-        movie.Poster !=='N/A'? <Movie key={movie.imdbID} movie={movie} />: console.log('undifined') ))}</div>
+  <div className='movie-home'>
+    { movies &&
+     movies
+     .filter((movie)=>movie.Poster !== 'N/A')
+     .map((movie)=><Movie key={movie.imdbID} movie={movie} />)
+  }
+  </div>
   )
 }
 

@@ -15,13 +15,21 @@ import Fight from './pages/Fight'
 import Horror from './pages/Horror' 
 import Kids from './pages/Kids' 
 import War from './pages/War' 
-
+import { MyContext } from './Context'
+import { useState } from 'react'
+import Search from './pages/Search'
 function App() {
 
+  const[ inputValue,setInputValue]=useState('')
+  const [clickSearch,setClickSearch]=useState('')
+
+const data ={inputValue,setInputValue,clickSearch,setClickSearch}
 
   return (
-    <div > <Header />
+    <MyContext.Provider value ={data} > 
+    <Header />
       <div className='main'>
+        <Search/>
       <Routes>
         <Route path='/' element={<Home/>}/>
                <Route path='/action' element={<Action/>}  />
@@ -42,7 +50,7 @@ function App() {
       <div>
       
       </div>
-    </div>
+    </MyContext.Provider>
   )
 }
 

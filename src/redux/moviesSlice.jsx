@@ -1,25 +1,12 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import axios from 'axios'
-
 const initialState = {
     movies: [],
 }
 const getMoviesUrl=(search,type)=>(
    ` http://www.omdbapi.com/?s=${search}&type=${type}&apikey=1faef3e4`
 )
-const allSeries = getMoviesUrl('all','movie')
-const war = getMoviesUrl('war','movie')
-const biography = getMoviesUrl('biography','movie')
-const kids = getMoviesUrl('kids','movie')
-const crime = getMoviesUrl('crime','movie')
-const adventure = getMoviesUrl('adventure','movie')
-const fantasy = getMoviesUrl('fantasy','movie')
-const ComedyMovies = getMoviesUrl('comedy','movie')
-const action = getMoviesUrl('action','movie')
-const drama = getMoviesUrl('drama','movie')
-const anime = getMoviesUrl('animation','movie')
-const fight = getMoviesUrl('fight','movie')
-const horror = getMoviesUrl('horror','movie')
+
 export const menuChildren=[{text:'Action',to:"/action"},
     {text:'Adventure',to:"/adventure"},
     {text:'Animation',to:"/animation"},
@@ -33,12 +20,21 @@ export const menuChildren=[{text:'Action',to:"/action"},
     {text:'Kids',to:"/kids"},
     {text:'War',to:"/war"},
    ]
-export const fetchMovies = createAsyncThunk('movies',
-    async ({search,type}) => {
-        const response = await axios.get(getMoviesUrl(search,type))
-        return response.data.Search || []
+export const fetchMovies = createAsyncThunk('movies/fetchMovies',
+    async ({ search, type }, { rejectWithValue }) => {
+        try {
+            const response = await axios.get(getMoviesUrl(search, type));
+            if (response.data.Response === "True") {
+                return response.data.Search || [];
+            } else {
+                return rejectWithValue(response.data.Error || "Axtarış nəticəsi tapılmadı");
+            }
+        } catch (error) {
+            return rejectWithValue(error.message);
+        }
     }
 )
+
 export const moviesSlice = createSlice({
     name: 'movies',
     initialState,

@@ -11,9 +11,9 @@ function Adventure() {
     }, [])
    
     const { movies } = useSelector(store => store.movies)
-    console.log(movies)
+    
   return (
-    <div>{<Body movies={mevies}/>}</div>
+    <div>{<Body movies={movies}/>}</div>
   )
 }
 

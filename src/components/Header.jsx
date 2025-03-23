@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { menuChildren, fetchMovies } from '../redux/moviesSlice'
+import { menuChildren } from '../data/menuData';
 import '../style/Components.css'
 import { BiSolidCameraMovie } from "react-icons/bi";
 import Drawer from '@mui/material/Drawer';
@@ -9,9 +9,11 @@ import { Box } from '@mui/material';
 import { IoPersonCircleSharp } from "react-icons/io5";
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import { useDispatch, useSelector } from 'react-redux';
 import { Link} from 'react-router-dom';
 import Series from '../pages/Series';
+import {MyContext} from '../Context'
+import { useContext } from 'react';
+import { FaSearch } from "react-icons/fa";
 function Header() {
 
   const [menuSituation, setMenuSituation] = useState(false)
@@ -43,27 +45,17 @@ function Header() {
   const handleGenresClose = () => {
     setAnchorEl(null); 
   };
- const [inputValue,setInputValue]=useState('')
 
- const handleInput = (e)=>{
-    setInputValue(e.target.value)
-  }
+  const { inputValue, setInputValue,setClickSearch,clickSearch } = useContext(MyContext)
   const menuItems = [
     { text: "Watch Movies", link: '#' },
     { text: 'Best Movies', link: '#' },
     { text: 'Series', link: '#' , onClick:handleSeriesClick},
     { text: 'Genres', link: '#', onClick:handleGenresClick },
     { text: 'Preferences', link: '#' },]
-  
-    const dispatch = useDispatch()
-    useEffect(() => {
-        dispatch(fetchMovies({search: "war", type: "movie" }))
-       
-    }, [])
-   
-    const { movies } = useSelector(store => store.movies)
-    console.log(movies)
-
+const handleSearch=()=>{
+  setClickSearch(inputValue)
+}
   return (
     <div className='parent-header'>
       <div className='header-flex'>
@@ -97,14 +89,13 @@ function Header() {
           </ul>
         </div>
         <div className='header-right'>
-          <input type="text" value={ inputValue} onChange={handleInput}  style={{ display: displaySize }} className='header-input' placeholder='Enter keywords...' />
+          <input type="text" value={ inputValue || ""} onChange={(e)=>(setInputValue(e.target.value))}  style={{ display: displaySize }} className='header-input' placeholder='Enter keywords...' />
+          <button onClick={handleSearch}><FaSearch/></button>
           <div >
             <button className='login-btn'><IoPersonCircleSharp className='btn-icon' /><span className='login-text' style={{ display: displaySize }} >Login</span></button>
           </div>
         </div>
       </div >
-      <input value={ inputValue} onChange={handleInput} style={{ display: displaySize === 'none' ? 'block' : 'none' }} className='responsive-input' placeholder='Enter keywords...' type="text" />
-
       <Menu
         id="genres-menu"
         anchorEl={anchorEl}

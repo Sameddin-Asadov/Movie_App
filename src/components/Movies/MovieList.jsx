@@ -8,7 +8,7 @@ function MovieList() {
     useEffect(() => {
         const categories= ['adventure','action','animate','biography','comedy','crime','drama','fight','horror','kid','war','fantasy']
     Promise.all(categories.map(category =>
-        dispatch(fetchMovies({ search: category, type: "series" }))
+        dispatch(fetchMovies({ search: category, type: "movie" })).unwrap()
       ));
  
        }, [dispatch])
