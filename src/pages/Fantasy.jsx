@@ -8,7 +8,7 @@ function Fantasy() {
    useEffect(() => {
           dispatch(fetchMovies({search: "fantasy", type: "movie" }))
          
-      }, [])
+      }, [dispatch])
      
       const { movies } = useSelector(store => store.movies)
   return (

@@ -7,7 +7,7 @@ const dispatch = useDispatch()
  useEffect(() => {
         dispatch(fetchMovies({search: "action", type: "movie" }))
        
-    }, [])
+    }, [dispatch])
    
     const { movies } = useSelector(store => store.movies)
   return (

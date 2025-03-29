@@ -8,7 +8,7 @@ function Animation() {
    useEffect(() => {
           dispatch(fetchMovies({search: "animation", type: "movie" }))
          
-      }, [])
+      }, [dispatch])
      
       const { movies } = useSelector(store => store.movies)
   return (

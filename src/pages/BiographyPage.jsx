@@ -9,7 +9,7 @@ function Biography() {
      useEffect(() => {
             dispatch(fetchMovies({search: "biography", type: "movie" }))
            
-        }, [])
+        }, [dispatch])
        
         const { movies } = useSelector(store => store.movies)
   return (

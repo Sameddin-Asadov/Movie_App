@@ -8,7 +8,7 @@ function Horror() {
    useEffect(() => {
           dispatch(fetchMovies({search: "horror", type: "movie" }))
          
-      }, [])
+      }, [dispatch])
      
       const { movies } = useSelector(store => store.movies)
   return (

@@ -18,6 +18,7 @@ import War from './pages/War'
 import { MyContext } from './Context'
 import { useState } from 'react'
 import Search from './pages/Search'
+import MovieDetails from './pages/MovieDetails'
 function App() {
 
   const[ inputValue,setInputValue]=useState('')
@@ -32,6 +33,7 @@ const data ={inputValue,setInputValue,clickSearch,setClickSearch}
         <Search/>
       <Routes>
         <Route path='/' element={<Home/>}/>
+        <Route  path='/movie-details/:imdbID'  element={<MovieDetails/>}/>
                <Route path='/action' element={<Action/>}  />
                <Route path='/adventure' element={<Adventure/>}  />
                <Route path='/animation' element={<Animation/>}  />

@@ -8,7 +8,7 @@ function Comedy() {
     useEffect(() => {
            dispatch(fetchMovies({search: "comedy", type: "movie" }))
           
-       }, [])
+       }, [dispatch])
       
        const { movies } = useSelector(store => store.movies)
   return (

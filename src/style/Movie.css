@@ -17,6 +17,13 @@ flex-wrap: wrap;}
     height:282px;
     padding: 5px;
     margin-top: 15px;
+    transition: transform 0.3s ease-in-out;
+    transition: box-shadow 0.3s ease-in-out;
+}
+.card:hover{
+  cursor: pointer;
+  transform: scale(1.1);
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.5);
 }
 .card-image{
     width: 190px;
